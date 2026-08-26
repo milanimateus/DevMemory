@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevMemory - Início</title>
+
+    <!-- Importação dos estilos -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
+  <body>
+    <main class="home-container">
+      <header class="home-header">
+        <h1>DevMemory</h1>
+        <p>Teste sua memória com linguagens de programação!</p>
+      </header>
+
+      <!-- Formulário de entrada -->
+      <form id="login-form" class="login-form">
+        <div class="input-group">
+          <label for="player-name">Seu Nome</label>
+          <input
+            type="text"
+            id="player-name"
+            placeholder="Digite seu nome"
+            required
+            autocomplete="off"
+            maxlength="15"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="difficulty">Nível de Dificuldade</label>
+          <select id="difficulty" required>
+            <option value="" disabled selected>Selecione um nível</option>
+            <option value="facil">Fácil (8 cartas)</option>
+            <option value="medio">Médio (12 cartas)</option>
+            <option value="dificil">Difícil (16 cartas)</option>
+            <option value="expert">Expert (24 cartas)</option>
+          </select>
+        </div>
+
+        <button type="submit" id="btn-start" class="btn-start" disabled>
+          Iniciar Jogo
+        </button>
+      </form>
+    </main>
+
+    <!-- Importação do script -->
+    <script src="../js/home.js"></script>
+  </body>
+</html>
