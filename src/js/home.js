@@ -10,8 +10,8 @@ let selectedDifficulty = ""; // Variável para armazenar o nível selecionado
 const validateForm = () => {
   const nameValue = inputName.value.trim();
 
-  // Habilita o botão se o nome tiver 2+ letras e um nível estiver selecionado
-  if (nameValue.length >= 2 && selectedDifficulty !== "") {
+  // Habilita o botão se o nome tiver 3+ letras e um nível estiver selecionado
+  if (nameValue.length >= 3 && selectedDifficulty !== "") {
     btnStart.removeAttribute("disabled");
   } else {
     btnStart.setAttribute("disabled", "true");
