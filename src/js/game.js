@@ -155,7 +155,7 @@ const initGame = () => {
     card.innerHTML = `
             <div class="card-inner">
                 <div class="card-front">
-                    <span class="card-logo-text">DevMemory</span>
+                    <span class="card-placeholder"></span>
                 </div>
                 <div class="card-back">
                     <i class="${lang.icon} card-icon"></i>
