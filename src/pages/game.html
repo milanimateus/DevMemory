@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Biblioteca de ícones/logos para as linguagens -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevMemory - Jogo</title>
+
+    <!-- Reaproveitamos o global para o fundo escuro e fontes -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/game.css" />
+  </head>
+  <body>
+    <!-- Painel superior com os dados da partida -->
+    <header class="game-header">
+      <div class="stat-box">
+        <span class="label">Jogador</span>
+        <span id="player-name-display" class="value">---</span>
+      </div>
+      <div class="stat-box">
+        <span class="label">Nível</span>
+        <span id="level-display" class="value">---</span>
+      </div>
+      <div class="stat-box">
+        <span class="label">Pares</span>
+        <span id="score" class="value">0/0</span>
+      </div>
+      <div class="stat-box">
+        <span class="label">Tempo</span>
+        <span id="timer" class="value">00:00</span>
+      </div>
+    </header>
+
+    <!-- Tabuleiro onde as cartas vão aparecer -->
+    <main class="game-container">
+      <section class="grid" id="game-grid">
+        <!-- As cartas serão injetadas dinamicamente via JavaScript aqui -->
+      </section>
+    </main>
+
+    <!-- Tela de Vitória (Inicia oculta via CSS) -->
+    <div id="victory-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Desafio Concluído!</h2>
+        <p>Excelente memória, <strong id="modal-player"></strong>!</p>
+        <p>
+          Você finalizou o nível <strong id="modal-level"></strong> em
+          <strong id="modal-time"></strong>.
+        </p>
+
+        <div class="modal-buttons">
+          <button id="btn-restart" class="btn-action">Jogar Novamente</button>
+          <button id="btn-menu" class="btn-action secondary">
+            Voltar ao Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Importação do script -->
+    <script src="../js/game.js"></script>
+  </body>
+</html>
