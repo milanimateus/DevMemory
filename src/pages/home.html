@@ -31,14 +31,21 @@
         </div>
 
         <div class="input-group">
-          <label for="difficulty">Nível de Dificuldade</label>
-          <select id="difficulty" required>
-            <option value="" disabled selected>Selecione um nível</option>
-            <option value="facil">Fácil (8 cartas)</option>
-            <option value="medio">Médio (12 cartas)</option>
-            <option value="dificil">Difícil (16 cartas)</option>
-            <option value="expert">Expert (24 cartas)</option>
-          </select>
+          <label>Nível de Dificuldade</label>
+          <div class="difficulty-options">
+            <button type="button" class="btn-diff" data-level="facil">
+              Fácil
+            </button>
+            <button type="button" class="btn-diff" data-level="medio">
+              Médio
+            </button>
+            <button type="button" class="btn-diff" data-level="dificil">
+              Difícil
+            </button>
+            <button type="button" class="btn-diff" data-level="expert">
+              Expert
+            </button>
+          </div>
         </div>
 
         <button type="submit" id="btn-start" class="btn-start" disabled>
