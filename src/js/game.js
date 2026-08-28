@@ -172,6 +172,25 @@ const initGame = () => {
   startTimer();
 };
 
+// Salva o resultado no Ranking do localStorage
+const saveScoreToRanking = () => {
+  const newRecord = {
+    name: playerName,
+    level: difficulty, // 'facil', 'medio', 'dificil', 'expert'
+    timeStr: timerDisplay.textContent, // Formato "00:00" para exibir visualmente
+    timeSeconds: secondsElapsed, // Formato numérico para facilitar a ordenação no ranking
+  };
+
+  // Busca o ranking salvo anteriormente ou cria um array vazio se for a primeira vez
+  const rankingDB = JSON.parse(localStorage.getItem("devmemory_ranking")) || [];
+
+  // Adiciona o novo recorde ao array
+  rankingDB.push(newRecord);
+
+  // Salva o array atualizado de volta no navegador (precisa ser convertido para string)
+  localStorage.setItem("devmemory_ranking", JSON.stringify(rankingDB));
+};
+
 // Comportamento de clique para virar a carta
 function flipCard() {
   if (isLocked) return;
@@ -215,6 +234,7 @@ const disableCards = () => {
   // Verifica condição de vitória
   if (matchesCount === currentConfig.pairs) {
     clearInterval(timerInterval);
+    saveScoreToRanking(); // <--- Função adicionada aqui!
     showVictoryModal();
   }
 };
