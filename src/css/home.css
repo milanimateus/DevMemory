@@ -1,0 +1,138 @@
+/* Container principal da Home */
+.home-container {
+  background-color: var(--card-bg);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Suavizei a sombra para combinar com o layout claro */
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  margin: auto; /* Centraliza vertical e horizontalmente entre a navbar e o footer */
+}
+
+.home-header {
+  margin-bottom: 2rem;
+}
+
+.home-header h1 {
+  color: #22353d;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-header p {
+  color: var(--text-muted);
+}
+
+/* Formulário e espaçamentos */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Estilo do Input de Nome */
+.input-group input {
+  padding: 1rem;
+  border-radius: 6px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--primary); /* Fica roxo quando o usuário clica */
+}
+
+/* Grid para os botões de dificuldade (2 colunas) */
+.difficulty-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+/* Estilo padrão dos botões de dificuldade */
+.btn-diff {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  padding: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-diff:hover {
+  border-color: var(--primary-hover);
+}
+
+/* Estilo de quando o botão está SELECIONADO (a classe adicionada no JS) */
+.btn-diff.active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: scale(1.03); /* Dá um pequeno "zoom" */
+  box-shadow: 0 0 10px rgba(130, 87, 229, 0.4); /* Efeito neon */
+}
+
+/* Botão de Iniciar Jogo */
+.btn-start {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--success);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.btn-start:hover:not(:disabled) {
+  background-color: var(--success-hover);
+  transform: translateY(-2px); /* Efeito de flutuar ao passar o mouse */
+}
+
+/* Botão travado (antes do usuário preencher os dados) */
+.btn-start:disabled {
+  background-color: var(--border-color);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Link de Ver Ranking */
+.link-ranking {
+  margin-top: 0.5rem;
+  color: #22353d; /* Usa o tom de verde da sua paleta */
+  font-size: 0.95rem; /* Tamanho menor */
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none; /* Remove a linha padrão do link */
+  transition: color 0.2s;
+}
+
+.link-ranking:hover {
+  text-decoration: underline; /* Adiciona a linha ao passar o mouse */
+  color: #1b2b31; /* Fica com um verde levemente mais escuro */
+}

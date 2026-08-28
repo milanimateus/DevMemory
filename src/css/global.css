@@ -1,0 +1,104 @@
+/* Importando uma fonte moderna do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Definindo as variáveis de cores (Paleta Dark Tech) */
+:root {
+  --bg-color: #e9ece6;
+  --card-bg: #fdfbf7;
+  --border-color: #cfd8dc;
+  --text-color: #263238;
+  --text-muted: #607d8b;
+  --primary: #4a7c59;
+  --primary-hover: #3d664a;
+  --success: #2e7d32;
+  --success-hover: #1b5e20;
+}
+/* Reset básico para garantir que funcione igual em todo navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* =========================================
+   NAVBAR & FOOTER GLOBAIS
+   ========================================= */
+
+/* =========================================
+   LAYOUT BASE E NAVBAR FIXA
+   ========================================= */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 70px 1rem 0 1rem; /* 70px de espaço no topo para a navbar não cobrir o conteúdo */
+}
+
+/* Navbar Fixa */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* Altura ajustada para dar respiro ao logo maior */
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none; /* Adicionado para tirar o sublinhado do link */
+}
+
+/* Logo aumentada */
+.nav-logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.nav-title {
+  font-size: 1.3rem; /* Levemente aumentado para manter a proporção com o logo */
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.nav-badge {
+  font-size: 0.8rem;
+  background-color: var(--bg-color);
+  color: var(--text-muted);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: auto; /* A mágica acontece aqui: empurra o footer pro final da página */
+}
+
+.footer strong {
+  color: var(--text-color);
+}

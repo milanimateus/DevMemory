@@ -1,0 +1,291 @@
+body {
+  flex-direction: column;
+  justify-content: flex-start; /* Força o conteúdo a começar do topo */
+  padding: 2rem 1rem; /* Dá um respiro nas bordas da tela */
+}
+/* =========================================
+   CABEÇALHO / DASHBOARD
+   ========================================= */
+.game-header {
+  width: 25%;
+  max-width: 900px;
+  margin: 4rem auto 3rem auto; /* 4rem no topo cria um espaçamento perfeito da navbar */
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  background-color: var(--card-bg);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.stat-box .label {
+  font-size: 0.85rem;
+  color: #22353d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.stat-box .value {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* =========================================
+   TABULEIRO E GRID
+   ========================================= */
+.game-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Força o container das cartas a crescer e jogar o footer para o chão */
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem; /* Mantém o mesmo espaçamento na horizontal e vertical */
+  justify-content: center;
+  align-content: start; /* Impede que as cartas se afastem verticalmente */
+  perspective: 1000px;
+}
+
+/* Trocamos 1fr por auto para que o grid respeite o tamanho exato da carta + o gap */
+.grid-facil {
+  grid-template-columns: repeat(4, auto);
+}
+.grid-medio {
+  grid-template-columns: repeat(4, auto);
+}
+.grid-dificil {
+  grid-template-columns: repeat(4, auto);
+}
+.grid-expert {
+  grid-template-columns: repeat(6, auto);
+}
+/* =========================================
+   CARTAS E EFEITO 3D (FLIP)
+   ========================================= */
+.card {
+  background-color: transparent;
+  width: 140px; /* Largura fixa adicionada */
+  height: 180px; /* Altura ajustada para manter a proporção retangular */
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Quando o JS adiciona a classe 'flipped', o miolo da carta gira 180 graus */
+.card.flipped .card-inner,
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Estilos comuns para frente e verso */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  /* Esconde a "costa" do elemento quando ele está virado */
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Frente da Carta (Oculta) */
+.card-front {
+  /* Padrão de listras diagonais */
+  background: repeating-linear-gradient(
+    45deg,
+    var(--card-bg),
+    var(--card-bg) 8px,
+    var(--border-color) 8px,
+    var(--border-color) 16px
+  );
+  border: 2px solid var(--primary);
+
+  /* Cria a "margem" lisa ao redor do padrão, como num baralho real */
+  box-shadow:
+    inset 0 0 0 8px var(--card-bg),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Propriedades mantidas para posicionamento e layout */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* Verso da Carta (Informações da Linguagem) */
+.card-back {
+  background-color: var(--card-bg);
+  border: 2px solid var(--success);
+  transform: rotateY(180deg);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-color);
+}
+
+.card-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+/* Efeito para cartas que já formaram par */
+.card.matched .card-back {
+  background-color: rgba(4, 211, 97, 0.1);
+  border-color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* =========================================
+   MODAL DE VITÓRIA
+   ========================================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(18, 18, 20, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border-color);
+  max-width: 450px;
+  width: 90%;
+}
+
+.modal-content h2 {
+  color: var(--success);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.modal-content strong {
+  color: var(--primary);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.btn-action {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--success);
+  color: #fff;
+  transition: filter 0.2s;
+}
+
+.btn-action:hover {
+  filter: brightness(1.2);
+}
+
+.btn-action.secondary {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-action.secondary:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+  .game-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .grid-facil,
+  .grid-medio,
+  .grid-dificil {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-expert {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card {
+    height: 140px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card-desc {
+    display: none; /* Esconde a descrição em telas pequenas para evitar quebra de layout */
+  }
+}
