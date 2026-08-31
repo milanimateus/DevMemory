@@ -4,10 +4,22 @@ const rankingBody = document.getElementById("ranking-body");
 const noDataMsg = document.getElementById("no-data-msg");
 const rankingTable = document.querySelector(".ranking-table");
 const btnBack = document.getElementById("btn-back");
+const btnClearRanking = document.getElementById("btn-clear-ranking");
 
 // Busca os dados do ranking no cache do navegador
 const getRankingData = () => {
   return JSON.parse(localStorage.getItem("devmemory_ranking")) || [];
+};
+
+const clearRanking = () => {
+  const confirmed = window.confirm("Deseja limpar todos os dados do ranking?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  localStorage.removeItem("devmemory_ranking");
+  renderRanking(document.querySelector(".btn-filter.active")?.dataset.level || "facil");
 };
 
 // Renderiza a tabela com base no nível de dificuldade selecionado
@@ -62,6 +74,9 @@ filterButtons.forEach((button) => {
     renderRanking(selectedLevel);
   });
 });
+
+// Ação do botão de limpar ranking
+btnClearRanking.addEventListener("click", clearRanking);
 
 // Ação do botão de voltar
 btnBack.addEventListener("click", () => {
