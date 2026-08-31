@@ -102,6 +102,7 @@ const languagesDatabase = [
 let timerInterval = null;
 let secondsElapsed = 0;
 let matchesCount = 0;
+let movesCount = 0;
 let firstCard = null;
 let secondCard = null;
 let isLocked = false; // Bloqueia cliques enquanto valida o par
@@ -109,7 +110,7 @@ let isLocked = false; // Bloqueia cliques enquanto valida o par
 // Renderiza dados iniciais no painel superior
 playerNameDisplay.textContent = playerName;
 levelDisplay.textContent = currentConfig.name;
-scoreDisplay.textContent = `0/${currentConfig.pairs}`;
+scoreDisplay.textContent = "0";
 
 // Função do Cronômetro
 const startTimer = () => {
@@ -210,6 +211,9 @@ function flipCard() {
 
 // Valida se as duas cartas viradas são iguais
 const checkForMatch = () => {
+  movesCount++;
+  scoreDisplay.textContent = String(movesCount);
+
   const isMatch =
     firstCard.getAttribute("data-name") ===
     secondCard.getAttribute("data-name");
@@ -227,7 +231,6 @@ const disableCards = () => {
   secondCard.classList.add("matched");
 
   matchesCount++;
-  scoreDisplay.textContent = `${matchesCount}/${currentConfig.pairs}`;
 
   resetBoard();
 
