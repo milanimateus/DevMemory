@@ -186,8 +186,23 @@ const saveScoreToRanking = () => {
   // Busca o ranking salvo anteriormente ou cria um array vazio se for a primeira vez
   const rankingDB = JSON.parse(localStorage.getItem("devmemory_ranking")) || [];
 
-  // Adiciona o novo recorde ao array
-  rankingDB.push(newRecord);
+  const existingRecordIndex = rankingDB.findIndex(
+    (record) =>
+      record.level === difficulty &&
+      record.name.toLowerCase() === playerName.trim().toLowerCase(),
+  );
+
+  if (existingRecordIndex !== -1) {
+    const existingRecord = rankingDB[existingRecordIndex];
+
+    if (secondsElapsed >= existingRecord.timeSeconds) {
+      return;
+    }
+
+    rankingDB[existingRecordIndex] = newRecord;
+  } else {
+    rankingDB.push(newRecord);
+  }
 
   // Salva o array atualizado de volta no navegador (precisa ser convertido para string)
   localStorage.setItem("devmemory_ranking", JSON.stringify(rankingDB));
