@@ -11,6 +11,7 @@ const modalPlayer = document.getElementById("modal-player");
 const modalLevel = document.getElementById("modal-level");
 const modalTime = document.getElementById("modal-time");
 const btnRestart = document.getElementById("btn-restart");
+const btnSidebarRestart = document.getElementById("btn-sidebar-restart");
 const btnMenu = document.getElementById("btn-menu");
 
 // Recupera dados salvos na Home via localStorage
@@ -268,6 +269,10 @@ const showVictoryModal = () => {
 
 // Ações dos botões do modal de vitória
 btnRestart.addEventListener("click", () => {
+  window.location.reload();
+});
+
+btnSidebarRestart.addEventListener("click", () => {
   window.location.reload();
 });
 
