@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../css/game.css" />
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- Navbar Fixa -->
     <nav class="navbar">
       <a href="home.html" class="nav-brand">
         <img
@@ -25,36 +25,47 @@
         />
       </a>
       <div class="nav-links">
-        <span class="nav-badge">GAC116 - Programação Web</span>
+        <a href="home.html" class="nav-item">Home</a>
+        <a href="ranking.html" class="nav-item">Ranking</a>
+        <a
+          href="https://github.com/milanimateus"
+          target="_blank"
+          class="nav-item"
+          >Contato</a
+        >
       </div>
     </nav>
-    <!-- Painel superior com os dados da partida -->
-    <header class="game-header">
-      <div class="stat-box">
-        <span class="label">Jogador:</span>
-        <span id="player-name-display" class="value">---</span>
-      </div>
-      <div class="stat-box">
-        <span class="label">Nível:</span>
-        <span id="level-display" class="value">---</span>
-      </div>
-      <div class="stat-box">
-        <span class="label">Pares:</span>
-        <span id="score" class="value">0/0</span>
-      </div>
-      <div class="stat-box">
-        <span class="label">Tempo:</span>
-        <span id="timer" class="value">00:00</span>
-      </div>
-    </header>
+    <!-- Container que alinha a barra lateral e o tabuleiro lado a lado -->
+    <div class="game-layout">
+      <!-- Painel lateral esquerdo -->
+      <aside class="game-sidebar">
+        <h1>DevMemory</h1>
 
-    <!-- Tabuleiro onde as cartas vão aparecer -->
-    <main class="game-container">
-      <section class="grid" id="game-grid">
-        <!-- As cartas serão injetadas dinamicamente via JavaScript aqui -->
-      </section>
-    </main>
+        <div class="stat-box">
+          <span class="label">Jogador</span>
+          <span id="player-name-display" class="value">---</span>
+        </div>
+        <div class="stat-box">
+          <span class="label">Nível</span>
+          <span id="level-display" class="value">---</span>
+        </div>
+        <div class="stat-box">
+          <span class="label">Pares</span>
+          <span id="score" class="value">0/0</span>
+        </div>
+        <div class="stat-box">
+          <span class="label">Tempo</span>
+          <span id="timer" class="value">00:00</span>
+        </div>
+      </aside>
 
+      <!-- Tabuleiro na direita -->
+      <main class="game-container">
+        <section class="grid" id="game-grid">
+          <!-- As cartas serão injetadas dinamicamente via JavaScript aqui -->
+        </section>
+      </main>
+    </div>
     <!-- Tela de Vitória (Inicia oculta via CSS) -->
     <div id="victory-modal" class="modal hidden">
       <div class="modal-content">
@@ -73,12 +84,13 @@
         </div>
       </div>
     </div>
-    <!--Footer-->
     <footer class="footer">
-      <p>
-        &copy; 2026 <strong>DevMemory</strong>. Desenvolvido para fins
-        acadêmicos sob Licença MIT.
-      </p>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 <strong>DevMemory</strong>. Desenvolvido para fins
+          acadêmicos sob Licença MIT.
+        </p>
+      </div>
     </footer>
     <!-- Importação do script -->
     <script src="../js/game.js"></script>
