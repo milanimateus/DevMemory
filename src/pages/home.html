@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevMemory - Início</title>
+
+    <!-- Importação dos estilos -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
+  <body>
+    <main class="home-container">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <a href="home.html" class="nav-brand">
+          <img
+            src="../assets/DevMemory-Logo.png"
+            alt="DevMemory Logo"
+            class="nav-logo"
+          />
+        </a>
+
+        <!-- Ícone do Menu Hambúrguer -->
+        <button class="hamburger" id="hamburger" aria-label="Abrir Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="home.html" class="nav-item">Home</a>
+          <a href="ranking.html" class="nav-item">Ranking</a>
+          <a
+            href="https://github.com/milanimateus"
+            target="_blank"
+            class="nav-item"
+            >Contato (GitHub)</a
+          >
+        </div>
+      </nav>
+      <header class="home-header">
+        <h1>DevMemory</h1>
+        <p>Teste sua memória com linguagens de programação!</p>
+      </header>
+
+      <!-- Formulário de entrada -->
+      <form id="login-form" class="login-form">
+        <div class="input-group">
+          <label for="player-name">Seu Nome</label>
+          <input
+            type="text"
+            id="player-name"
+            placeholder="Digite seu nome"
+            required
+            autocomplete="off"
+            maxlength="15"
+          />
+        </div>
+
+        <div class="input-group">
+          <label>Nível de Dificuldade</label>
+          <div class="difficulty-options">
+            <button type="button" class="btn-diff" data-level="facil">
+              Fácil
+            </button>
+            <button type="button" class="btn-diff" data-level="medio">
+              Médio
+            </button>
+            <button type="button" class="btn-diff" data-level="dificil">
+              Difícil
+            </button>
+            <button type="button" class="btn-diff" data-level="expert">
+              Expert
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-start" class="btn-start" disabled>
+          Iniciar Jogo
+        </button>
+        <a href="ranking.html" class="link-ranking">Ver Ranking</a>
+      </form>
+    </main>
+    <footer class="footer">
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 <strong>DevMemory</strong>. Desenvolvido para fins
+          acadêmicos sob Licença MIT.
+        </p>
+      </div>
+    </footer>
+    <!-- Importação do script -->
+    <script type="module" src="../js/home.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+/* Container Principal */
+.ranking-container {
+  background-color: var(--card-bg);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 450px;
+  margin: auto; /* Centraliza entre a navbar e o footer */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho */
+.ranking-header {
+  margin-bottom: 2rem;
+}
+
+.ranking-header h1 {
+  color: var(#22353d);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.ranking-header p {
+  color: var(--text-muted);
+}
+
+/* Filtros (Botões de Nível) */
+.ranking-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Evita quebra de layout no mobile */
+}
+
+.btn-filter {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px; /* Estilo pílula */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-filter:hover {
+  border-color: var(--primary-hover);
+}
+
+.btn-filter.active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(74, 124, 89, 0.3); /* Sombra baseada no verde principal */
+}
+
+/* Quadro e Tabela de Ranking */
+.ranking-board {
+  width: 100%;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 270px;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.ranking-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--border-color);
+  color: var(--text-color);
+  padding: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.ranking-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* Remove a borda inferior da última linha para não chocar com a borda do quadro */
+.ranking-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Efeito Zebra (listras alternadas) para facilitar a leitura */
+.ranking-table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Efeito de destaque ao passar o mouse na linha */
+.ranking-table tbody tr:hover {
+  background-color: rgba(74, 124, 89, 0.08); /* Highlight verde suave */
+}
+
+/* Mensagem de estado vazio (Nenhum recorde) */
+.no-data {
+  padding: 2rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Botão de Voltar ao Menu */
+.ranking-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-clear-ranking,
+.btn-back {
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-clear-ranking {
+  background-color: #c62828;
+  color: #fff;
+  border: 2px solid #c62828;
+}
+
+.btn-clear-ranking:hover {
+  background-color: #b71c1c;
+  border-color: #b71c1c;
+  transform: translateY(-2px);
+}
+
+.btn-back {
+  background-color: var(--success);
+  color: #fff;
+  border: none;
+}
+
+.btn-back:hover {
+  background-color: var(--success-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 2rem;
+    width: 100%;
+  }
+  .ranking-board {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
