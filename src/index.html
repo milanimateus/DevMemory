@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>DevMemory - Documentação e Registro Interno</title>
+    <title>DevMemory - Redirecionando...</title>
+
+    <!-- Redirecionamento automático imediato para a tela principal -->
+    <meta http-equiv="refresh" content="0;url=pages/home.html" />
+
     <!-- 
         REGISTRO TÉCNICO DO PROJETO DEVMEMORY
         
@@ -20,14 +23,46 @@
             "turma": "14A"
         }
     -->
+
+    <style>
+      /* Estilo básico de fallback caso o redirecionamento demore 1 segundo */
+      body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #121214;
+        color: #fff;
+      }
+      a {
+        color: #ce1b1b;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
-  <body style="display: none">
+
+  <body>
+    <h2>Carregando DevMemory...</h2>
+    <p>
+      Se você não for redirecionado automaticamente,
+      <a href="pages/home.html">clique aqui para iniciar o jogo</a>.
+    </p>
+
     <!-- 
         Estrutura oculta para registro de requisitos e funcionalidades implementadas:
         
         1. Telas do Sistema:
            - pages/home.html: Coleta o nome do jogador e define o nível de dificuldade.
            - pages/game.html: Renderiza o tabuleiro dinâmico, estatísticas e modal de vitória.
+           - pages/ranking.html: Exibe o ranking de jogadores com pontuações salvas no localStorage.
            
         2. Regras e Níveis de Dificuldade:
            - Fácil: 8 cartas (4 pares) | 1200ms de exibição no erro
@@ -41,9 +76,5 @@
            - Cronômetro nativo via setInterval.
            - Bloqueio de cliques assíncronos durante a validação de cartas.
     -->
-    <p>
-      DevMemory - Documento de registro e especificações técnicas internas da
-      atividade prática de Programação Web.
-    </p>
   </body>
 </html>
