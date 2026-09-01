@@ -56,7 +56,7 @@
 }
 
 .input-group input:focus {
-  border-color: var(--primary); /* Fica roxo quando o usuário clica */
+  border-color: var(--primary); /* Fica na cor verde principal ao ganhar foco */
 }
 
 /* Grid para os botões de dificuldade (2 colunas) */
@@ -88,7 +88,6 @@
   border-color: var(--primary);
   color: #fff;
   transform: scale(1.03); /* Dá um pequeno "zoom" */
-  box-shadow: 0 0 10px rgba(130, 87, 229, 0.4); /* Efeito neon */
 }
 
 /* Botão de Iniciar Jogo */
@@ -135,4 +134,11 @@
 .link-ranking:hover {
   text-decoration: underline; /* Adiciona a linha ao passar o mouse */
   color: #1b2b31; /* Fica com um verde levemente mais escuro */
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 2rem;
+    width: 100%;
+  }
 }

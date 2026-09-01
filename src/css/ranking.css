@@ -5,9 +5,11 @@
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   margin: auto; /* Centraliza entre a navbar e o footer */
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Cabeçalho */
@@ -62,8 +64,11 @@
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  overflow: hidden; /* Arredonda os cantos da tabela */
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 270px;
   margin-bottom: 2rem;
+  flex: 1;
 }
 
 .ranking-table {
@@ -73,6 +78,9 @@
 }
 
 .ranking-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: var(--border-color);
   color: var(--text-color);
   padding: 1rem;
@@ -116,12 +124,14 @@
 /* Botão de Voltar ao Menu */
 .ranking-actions {
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
+.btn-clear-ranking,
 .btn-back {
-  background-color: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
   padding: 0.8rem 1.5rem;
   border-radius: 6px;
   font-weight: 600;
@@ -129,7 +139,37 @@
   transition: all 0.2s;
 }
 
-.btn-back:hover {
-  background-color: var(--primary);
+.btn-clear-ranking {
+  background-color: #c62828;
   color: #fff;
+  border: 2px solid #c62828;
+}
+
+.btn-clear-ranking:hover {
+  background-color: #b71c1c;
+  border-color: #b71c1c;
+  transform: translateY(-2px);
+}
+
+.btn-back {
+  background-color: var(--success);
+  color: #fff;
+  border: none;
+}
+
+.btn-back:hover {
+  background-color: var(--success-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 2rem;
+    width: 100%;
+  }
+  .ranking-board {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
