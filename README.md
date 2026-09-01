@@ -52,7 +52,7 @@ O objetivo principal do jogo é encontrar todos os pares de cartas no menor temp
 
 ## 5. 🌐 Link da Publicação
 
-- [INSERIR LINK DO GITHUB PAGES AQUI]
+- https://milanimateus.github.io/DevMemory/src/pages/home.html
 
 ## 6. 📄 Licença
 
@@ -65,7 +65,7 @@ Este projeto utiliza a licença MIT. A licença MIT é uma licença permissiva q
   "nome": "DevMemory",
   "descricao": "Jogo da memória interativo com sistema de ranking, desenvolvido com HTML, CSS e JS puros para a disciplina de Programação Web.",
   "autores": "Mateus Milani Rodrigues",
-  "turma": "[INSERIR 10A, 14A ou 14B]"
+  "turma": "14A"
 }
 ```
 
