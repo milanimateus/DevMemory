@@ -1,16 +1,18 @@
-// Seleção dos elementos do DOM
+import { storage } from "../data/storage.js";
+// Seleção dos elementos da tela inicial do jogo.
 const inputName = document.getElementById("player-name");
 const btnStart = document.getElementById("btn-start");
 const formLogin = document.getElementById("login-form");
-const difficultyButtons = document.querySelectorAll(".btn-diff"); // Seleciona todos os botões de dificuldade
+const difficultyButtons = document.querySelectorAll(".btn-diff");
 
-let selectedDifficulty = ""; // Variável para armazenar o nível selecionado
+// Guarda a dificuldade escolhida pelo usuário para ser reutilizada na página do jogo.
+let selectedDifficulty = "";
 
-// Função para validar se o formulário está preenchido corretamente
+// Verifica se o formulário está válido antes de liberar o botão de iniciar.
 const validateForm = () => {
   const nameValue = inputName.value.trim();
 
-  // Habilita o botão se o nome tiver 3+ letras e um nível estiver selecionado
+  // O nome precisa ter ao menos 3 caracteres e uma dificuldade precisa estar ativa.
   if (nameValue.length >= 3 && selectedDifficulty !== "") {
     btnStart.removeAttribute("disabled");
   } else {
@@ -18,39 +20,34 @@ const validateForm = () => {
   }
 };
 
-// Gerencia o clique nos botões de dificuldade
+// Atualiza o estado visual dos botões de nível e registra a dificuldade selecionada.
 difficultyButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    // Remove a classe 'active' de todos os botões para "limpar" a seleção anterior
+    // Remove a seleção anterior para garantir que apenas um nível fique ativo.
     difficultyButtons.forEach((btn) => btn.classList.remove("active"));
 
-    // Adiciona a classe 'active' apenas no botão que foi clicado
+    // Marca o botão clicado como selecionado.
     button.classList.add("active");
 
-    // Salva a dificuldade escolhida pegando o valor do atributo data-level
+    // Pega o valor informado no atributo data-level para mapear a dificuldade.
     selectedDifficulty = button.getAttribute("data-level");
 
-    // Valida o formulário para checar se já pode liberar o botão de iniciar
+    // Revalida o formulário para liberar ou bloquear o início do jogo.
     validateForm();
   });
 });
 
-// Checa a validação sempre que o usuário digitar no nome
+// Valida novamente sempre que o jogador digitar no campo de nome.
 inputName.addEventListener("input", validateForm);
 
-// Função executada ao enviar o formulário
 const startGame = (event) => {
   event.preventDefault();
-
   const playerName = inputName.value.trim();
 
-  // Salva os dados no cache do navegador
-  localStorage.setItem("devmemory_player", playerName);
-  localStorage.setItem("devmemory_difficulty", selectedDifficulty);
+  // Usando a API limpa que você acabou de criar
+  storage.saveSession(playerName, selectedDifficulty);
 
-  // Redireciona para a página do jogo
   window.location.href = "game.html";
 };
 
-// Intercepta o envio do formulário
 formLogin.addEventListener("submit", startGame);

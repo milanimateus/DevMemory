@@ -1,11 +1,13 @@
-// Seleção dos elementos do DOM
+import { storage } from "../data/storage.js";
+import { languagesDatabase, difficultyConfig } from "../data/database.js";
+// Seleção dos elementos principais da tela de jogo.
 const playerNameDisplay = document.getElementById("player-name-display");
 const levelDisplay = document.getElementById("level-display");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
 const gameGrid = document.getElementById("game-grid");
 
-// Elementos do Modal de Vitória
+// Elementos do modal de vitória e botões de ação.
 const victoryModal = document.getElementById("victory-modal");
 const modalPlayer = document.getElementById("modal-player");
 const modalLevel = document.getElementById("modal-level");
@@ -14,91 +16,13 @@ const btnRestart = document.getElementById("btn-restart");
 const btnSidebarRestart = document.getElementById("btn-sidebar-restart");
 const btnMenu = document.getElementById("btn-menu");
 
-// Recupera dados salvos na Home via localStorage
-const playerName = localStorage.getItem("devmemory_player");
-const difficulty = localStorage.getItem("devmemory_difficulty");
+const { playerName, difficulty } = storage.getSession();
 
-// Se o usuário acessar direto o game.html sem passar pela home, redireciona de volta
 if (!playerName || !difficulty) {
   window.location.href = "home.html";
 }
 
-// Configurações de pares e tempo de exibição do erro conforme o nível
-const difficultyConfig = {
-  facil: { pairs: 4, errorTime: 1200, name: "Fácil" },
-  medio: { pairs: 6, errorTime: 900, name: "Médio" },
-  dificil: { pairs: 8, errorTime: 600, name: "Difícil" },
-  expert: { pairs: 12, errorTime: 350, name: "Expert" },
-};
-
 const currentConfig = difficultyConfig[difficulty] || difficultyConfig.facil;
-
-// Banco de dados contendo Logo (Devicon), Nome e Descrição Funcional
-const languagesDatabase = [
-  {
-    name: "JavaScript",
-    description:
-      "Essencial para dar dinamismo e interatividade às páginas web.",
-    icon: "devicon-javascript-plain colored",
-  },
-  {
-    name: "Python",
-    description:
-      "Focada em legibilidade, muito usada em IA, dados e automação.",
-    icon: "devicon-python-plain colored",
-  },
-  {
-    name: "HTML5",
-    description: "Linguagem de marcação para estruturar o conteúdo da web.",
-    icon: "devicon-html5-plain colored",
-  },
-  {
-    name: "CSS3",
-    description: "Responsável pelo design, layout e estilização visual.",
-    icon: "devicon-css3-plain colored",
-  },
-  {
-    name: "Java",
-    description:
-      "Orientada a objetos, robusta e de ampla execução corporativa.",
-    icon: "devicon-java-plain colored",
-  },
-  {
-    name: "TypeScript",
-    description: "Superset do JavaScript que adiciona tipagem estática.",
-    icon: "devicon-typescript-plain colored",
-  },
-  {
-    name: "PHP",
-    description: "Linguagem de script voltada para o desenvolvimento backend.",
-    icon: "devicon-php-plain colored",
-  },
-  {
-    name: "C++",
-    description: "Extensão de C, focada em alto desempenho e sistemas.",
-    icon: "devicon-cplusplus-plain colored",
-  },
-  {
-    name: "Ruby",
-    description: "Dinâmica e expressiva, famosa pelo framework Ruby on Rails.",
-    icon: "devicon-ruby-plain colored",
-  },
-  {
-    name: "Go",
-    description: "Criada pelo Google para alta concorrência e velocidade.",
-    icon: "devicon-go-original-wordmark colored",
-  },
-  {
-    name: "Rust",
-    description: "Focada em segurança de memória e alta performance.",
-    icon: "devicon-rust-plain colored",
-  },
-  {
-    name: "Swift",
-    description: "Desenvolvida pela Apple para ecossistemas iOS e macOS.",
-    icon: "devicon-swift-plain colored",
-  },
-];
 
 let timerInterval = null;
 let secondsElapsed = 0;
@@ -106,14 +30,14 @@ let matchesCount = 0;
 let movesCount = 0;
 let firstCard = null;
 let secondCard = null;
-let isLocked = false; // Bloqueia cliques enquanto valida o par
+let isLocked = false; // Bloqueia cliques enquanto valida a tentativa atual.
 
-// Renderiza dados iniciais no painel superior
+// Atualiza a área lateral com os dados do jogador e da dificuldade escolhida.
 playerNameDisplay.textContent = playerName;
 levelDisplay.textContent = currentConfig.name;
 scoreDisplay.textContent = "0";
 
-// Função do Cronômetro
+// Inicia o cronômetro do jogo assim que o tabuleiro for montado.
 const startTimer = () => {
   timerInterval = setInterval(() => {
     secondsElapsed++;
@@ -174,38 +98,16 @@ const initGame = () => {
   startTimer();
 };
 
-// Salva o resultado no Ranking do localStorage
+// Salva o resultado no ranking, atualizando o melhor tempo do jogador em cada nível.
 const saveScoreToRanking = () => {
   const newRecord = {
     name: playerName,
-    level: difficulty, // 'facil', 'medio', 'dificil', 'expert'
-    timeStr: timerDisplay.textContent, // Formato "00:00" para exibir visualmente
-    timeSeconds: secondsElapsed, // Formato numérico para facilitar a ordenação no ranking
+    level: difficulty,
+    timeStr: timerDisplay.textContent,
+    timeSeconds: secondsElapsed,
   };
 
-  // Busca o ranking salvo anteriormente ou cria um array vazio se for a primeira vez
-  const rankingDB = JSON.parse(localStorage.getItem("devmemory_ranking")) || [];
-
-  const existingRecordIndex = rankingDB.findIndex(
-    (record) =>
-      record.level === difficulty &&
-      record.name.toLowerCase() === playerName.trim().toLowerCase(),
-  );
-
-  if (existingRecordIndex !== -1) {
-    const existingRecord = rankingDB[existingRecordIndex];
-
-    if (secondsElapsed >= existingRecord.timeSeconds) {
-      return;
-    }
-
-    rankingDB[existingRecordIndex] = newRecord;
-  } else {
-    rankingDB.push(newRecord);
-  }
-
-  // Salva o array atualizado de volta no navegador (precisa ser convertido para string)
-  localStorage.setItem("devmemory_ranking", JSON.stringify(rankingDB));
+  storage.saveScore(newRecord);
 };
 
 // Comportamento de clique para virar a carta
