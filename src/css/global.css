@@ -182,7 +182,7 @@ body {
     top: 70px; /* Altura da navbar */
     right: -100%; /* Escondido fora da tela */
     width: 100%;
-    height: 40%; /* <-- MUDANÇA AQUI: Altura se ajusta aos links */
+    height: 30%; /* <-- MUDANÇA AQUI: Altura se ajusta aos links */
     background-color: var(--card-bg);
     flex-direction: column;
     align-items: center;
